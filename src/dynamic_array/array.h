@@ -5,7 +5,7 @@
 //this is for if the cap is reached
 //this operand will be used in to
 //expand cap
-#define CAP_GROWTH *3
+#define CAP_GROWTH +4
 #define CAP_INITIAL 4
 
 typedef struct {
@@ -16,10 +16,10 @@ typedef struct {
   int len;
 } array;
 
-array *array_create(int cap, int data_size);
+array *array_create( int data_size);
 
 
-void array_push(array *arr, const void *data);
+int array_push(array *arr, const void *data);
 void *array_get(const array *arr, int index);
 void array_destroy(array *arr);
 

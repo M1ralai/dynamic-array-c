@@ -2,22 +2,24 @@
 #include <stdio.h>
 
 int main() {
-  array *arr = array_create(32, sizeof(int));
+    array *arr = array_create(sizeof(int));
+    int cap;
+    cap = arr->cap;
+    int i;
+    for (i = 0; i < 40; i++) {
+        int err = array_push(arr, &(int){i});
+        if (err) {
+            printf("array push error, probably realloc");
+            return err;
+        }
+        if (arr->cap != cap) {
+            printf("\n-------------------- \n");
+            printf("array cap is changed, now %d \n", arr->cap);
+            cap = arr->cap;
+        }
 
-  array_push(arr, &(int){32});
-  array_push(arr, &(int){33});
-  array_push(arr, &(int){34});
-  array_push(arr, &(int){35});
-
-  void *one = array_get(arr, 0);
-  printf("%p \n", one);
-  printf("%d \n", *(int *)one);
-
-  void *two = array_get(arr, 1);
-  printf("%p \n", two);
-  printf("%d \n", *(int *)two);
-
-  void *three = array_get(arr, 2);
-  printf("%p \n", three);
-  printf("%d \n", *(int *)three);
+        int *data = (int *)array_get(arr, i);
+        printf("data: %d array_cap: %d array_len: %d \n", *data,
+                arr->cap, arr->len);
+    }
 }
