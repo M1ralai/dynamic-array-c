@@ -3,6 +3,10 @@
 
 int main() {
     array *arr = array_create(sizeof(int));
+    if(arr == NULL) {
+        printf("error when array creating");
+        return -1;
+    }
     int cap;
     cap = arr->cap;
     int i;
@@ -14,12 +18,13 @@ int main() {
         }
         if (arr->cap != cap) {
             printf("\n-------------------- \n");
-            printf("array cap is changed, now %d \n", arr->cap);
+            printf("array cap is changed, now %zu \n", arr->cap);
             cap = arr->cap;
         }
-
-        int *data = (int *)array_get(arr, i);
-        printf("data: %d array_cap: %d array_len: %d \n", *data,
+        int data;
+        array_get(arr, i, &data);
+        printf("data: %d array_cap: %zu array_len: %zu \n", data,
                 arr->cap, arr->len);
     }
+    array_destroy(arr);
 }
