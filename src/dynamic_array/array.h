@@ -5,8 +5,13 @@
 // this is for if the cap is reached
 // this operand will be used in to
 // expand cap
+#ifndef CAP_GROWTH
 #define CAP_GROWTH +4
+#endif
+
+#ifndef CAP_INITIAL
 #define CAP_INITIAL 4
+#endif
 
 typedef struct {
     size_t cap;

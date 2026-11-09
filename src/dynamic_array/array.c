@@ -5,6 +5,10 @@
 #include <string.h>
 
 array *array_create(size_t data_size) {
+    if (data_size == 0) {
+        return NULL;
+    }
+
     array *ret = malloc(sizeof *ret);
     if (ret == NULL) {
         return NULL;
